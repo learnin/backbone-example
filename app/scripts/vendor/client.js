@@ -12,17 +12,17 @@
   }
 
   Client.getPrefectures = function() {
-    var d = $.Deferred();
-    $.ajax({
+    return $.ajax({
       url: 'http://www.corsproxy.com/express.heartrails.com/api/json?method=getPrefectures',
       type:'GET',
       dataType: 'json'
-    }).done(function(data) {
-      d.resolve(data);
-    }).fail(function() {
-      d.reject();
+    }).then(function(data, textStatus, jqXHR) {
+      // return data;
+      return jqXHR.done(data, textStatus, jqXHR);
+    }, function(jqXHR, textStatus, errorThrown) {
+      // return jqXHR;
+      return jqXHR.fail(jqXHR, textStatus, errorThrown);
     });
-    return d;
   };
 
 }).call(this);
